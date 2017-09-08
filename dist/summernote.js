@@ -4800,7 +4800,7 @@
     /**
      * fontSize
      *
-     * @param {String} value - px
+     * @param {String} value - pt
      */
     this.fontSize = function (value) {
       var rng = this.createRange();
@@ -6505,12 +6505,14 @@
 
       if (styleInfo['font-size']) {
         var fontSize = styleInfo['font-size'];
+        var fontSizeInPoints = Math.round((fontSize * 72) / 96);
+        
         $toolbar.find('.dropdown-fontsize li a').each(function () {
           // always compare with string to avoid creating another func.
-          var isChecked = ($(this).data('value') + '') === (fontSize + '');
+          var isChecked = ($(this).data('value') + '') === (fontSizeInPoints + '');
           this.className = isChecked ? 'checked' : '';
         });
-        $toolbar.find('.note-current-fontsize').text(fontSize);
+        $toolbar.find('.note-current-fontsize').text(fontSizeInPoints);
       }
 
       if (styleInfo['line-height']) {

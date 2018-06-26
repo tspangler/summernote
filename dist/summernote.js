@@ -3750,7 +3750,7 @@ var Editor = /** @class */ (function () {
             return _this.fontStyling('font-family', "\'" + value + "\'");
         });
         this.fontSize = this.wrapCommand(function (value) {
-            return _this.fontStyling('font-size', value + 'px');
+            return _this.fontStyling('font-size', value + 'pt');
         });
         for (var idx = 1; idx <= 6; idx++) {
             this['formatH' + idx] = (function (idx) {
@@ -5703,13 +5703,15 @@ var Buttons = /** @class */ (function () {
         }
         if (styleInfo['font-size']) {
             var fontSize_1 = styleInfo['font-size'];
+            var fontSizeInPoints = Math.round((fontSize_1 * 72) / 96);
+
             $cont.find('.dropdown-fontsize a').each(function (idx, item) {
                 var $item = $$1(item);
                 // always compare with string to avoid creating another func.
-                var isChecked = ($item.data('value') + '') === (fontSize_1 + '');
+                var isChecked = ($item.data('value') + '') === (fontSizeInPoints + '');
                 $item.toggleClass('checked', isChecked);
             });
-            $cont.find('.note-current-fontsize').text(fontSize_1);
+            $cont.find('.note-current-fontsize').text(fontSizeInPoints);
         }
         if (styleInfo['line-height']) {
             var lineHeight_1 = styleInfo['line-height'];
